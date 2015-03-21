@@ -27,6 +27,6 @@
 	#old = red
 	#new = cyan
 [color "status"]
-	#added = green
-	#changed = yellow
-	#untracked = cyan
+	added = green
+	changed = yellow
+	untracked = cyan
