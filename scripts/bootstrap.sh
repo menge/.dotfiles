@@ -38,7 +38,7 @@ for dotfile in ${dotfiles}
 do
     #(cd ${DOTFILES_ROOT} ; ln -s ${dotfile} $HOME
 
-    linkfile=$(readlink -f $HOME/$dotfile)
+    linkfile=$(readlink -f ${HOME}/${dotfile})
     if [ -e ${linkfile} ]
     then
         realfile=$(cd ${DOTFILES_ROOT}; readlink -f ${dotfile})
@@ -47,7 +47,7 @@ do
             echo "${dotfile}"
         else
             echo "Creating link for ${dotfile}"
-            rm -f ${linkfile}
+            rm -f ${HOME}/${dotfile}
             (cd ${DOTFILES_ROOT}; ln -s $(readlink -f ${dotfile}) ${linkfile})
         fi
     else
