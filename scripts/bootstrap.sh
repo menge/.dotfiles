@@ -48,10 +48,10 @@ do
         else
             echo "Creating link for ${dotfile}"
             rm -f ${HOME}/${dotfile}
-            (cd ${DOTFILES_ROOT}; ln -s $(readlink -f ${dotfile}) ${linkfile})
+            (cd ${DOTFILES_ROOT}; ln -s $(readlink -f ${dotfile}) ${HOME}/${dotfile})
         fi
     else
         echo "Creating link for ${dotfile}"
-        (cd ${DOTFILES_ROOT}; ln -s $(readlink -f ${dotfile}) ${linkfile})
+        (cd ${DOTFILES_ROOT}; ln -s $(readlink -f ${dotfile}) ${HOME}/${dotfile})
     fi
 done
