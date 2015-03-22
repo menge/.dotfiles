@@ -5,8 +5,8 @@ set autoindent
 set smartindent
 
 set expandtab
-set shiftwidth=3
-set softtabstop=3
+set shiftwidth=4
+set softtabstop=4
 
 set diffopt+=iwhite
 
