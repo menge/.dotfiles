@@ -23,9 +23,6 @@ nmap ,, :qa<CR>
 
 filetype plugin on
 
-let Tlist_Ctags_Cmd='~/.local/arch/Linux/x86_64/bin/ctags'
-set tags=./tags,tags,/opt/data/emeng/git/sw/tags
-
 let &titlestring = "[" . expand("%:t") . "]"
 let &titleold = "$SHELL"
 "if &term == "screen" || &term == "screen-256color"
