@@ -1,3 +1,7 @@
+# environment variables
+export EDITOR=vim
+eval `$HOME/bin/ssh-agent-singleton.sh`
+
 # Set up the prompt
 
 autoload -Uz promptinit
