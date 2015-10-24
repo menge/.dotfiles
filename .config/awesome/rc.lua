@@ -69,6 +69,10 @@ layouts =
 }
 -- }}}
 
+-- deal with transparency issues in virtualbox and border drawings
+-- awful.util.spawn_with_shell("xcompmgr -cF &")
+awful.util.spawn_with_shell("xcompmgr &")
+
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
