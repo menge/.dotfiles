@@ -1,5 +1,6 @@
 # environment variables
 export EDITOR=vim
+export TERM=xterm-256color
 eval `$HOME/bin/ssh-agent-singleton.sh`
 
 if [ -f ~/.aliases ] ; then
