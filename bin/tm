@@ -1,0 +1,88 @@
+#!/bin/bash
+
+#
+# Modified TMUX start script from:
+#     http://forums.gentoo.org/viewtopic-t-836006-start-0.html
+#
+# Store it to `~/bin/tmx` and issue `chmod +x`.
+#
+
+# default parameters
+mode="exclusive"
+session_set="false"
+base_session=""
+
+# Argument parsing
+while [[ $# > 0 ]]
+do
+   key="$1"
+
+   case ${key} in
+      -m|--multi|--multiattach)
+      mode="multi"
+      ;;
+   *)
+      if [[ "$session_set" == "true" ]] ; then
+         echo "Can only specify single tmux session"
+         exit 1
+      fi
+      base_session=${key}
+      session_set="true"
+      ;;
+   esac
+
+   shift
+done
+
+if [[ "$session_set" != "true" ]] ; then
+    echo "Specify session name as the first argument"
+    exit 1
+fi
+
+# Works because bash automatically trims by assigning to variables and by 
+# passing arguments
+trim() { echo $1; }
+
+# Only because I often issue `ls` to this script by accident
+if [[ "$base_session" == "ls" ]]; then
+    tmux ls
+    exit
+fi
+
+# This actually works without the trim() on all systems except OSX
+tmux_nb=$(trim `tmux ls | grep "^$base_session" | wc -l`)
+if [[ "$tmux_nb" == "0" ]]; then
+    echo "Launching tmux base session $base_session ..."
+    tmux new-session -s $base_session
+else
+    # Make sure we are not already in a tmux session
+    if [[ -z "$TMUX" ]]; then
+        # If in exclusive mode, detach all attached sessions
+        if [[ "$mode" == "exclusive" ]]; then
+           echo "Exclusive mode... closing attached sessions"
+           old_sessions=$(tmux ls 2>/dev/null | egrep "$base_session(-[0-9]{14})*:.*attached" | awk -F: '{print $1}')
+           for attached_session in ${old_sessions}
+           do
+               tmux detach -s $attached_session
+           done
+        fi
+        # Kill defunct sessions first
+        old_sessions=$(tmux ls 2>/dev/null | egrep "^[0-9]{14}.*[0-9]+\)$" | cut -f 1 -d:)
+        for old_session_id in $old_sessions; do
+            tmux kill-session -t $old_session_id
+        done
+
+        echo "Launching copy of base session $base_session ..."
+        # Session is is date and time to prevent conflict
+        session_id="$base_session-`date +%Y%m%d%H%M%S`"
+        # Create a new session (without attaching it) and link to base session 
+        # to share windows
+        tmux new-session -d -t $base_session -s $session_id
+        # Create a new window in that session
+        #tmux new-window
+        # Attach to the new session
+        tmux attach-session -t $session_id
+        # When we detach from it, kill the session
+        tmux kill-session -t $session_id
+    fi
+fi 
