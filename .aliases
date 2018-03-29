@@ -1,2 +1,5 @@
 alias ls="ls --color"
 alias gs="git status"
+alias gl="git log"
+alias glol="git log --oneline --decorate --graph"
+alias glola="git log --oneline --decorate --graph --all"
