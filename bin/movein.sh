@@ -16,7 +16,18 @@ if [ $? = 0 ]; then
   echo "Checked out config.";
   else
     echo "Backing up pre-existing dot files.";
-    git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+    files=$(git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout 2>&1 | egrep "^\s+" | awk {'print $1'})
+    for file in $files
+    do
+        dname=$(dirname $file)
+        echo "backing up: $file"
+        if [ "$dname" = "." ] ; then
+            mv $file .config-backup/$file
+        else
+            mkdir -p .config-backup/$dname
+            mv $file .config-backup/$file
+        fi
+    done
 fi;
 git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 git --git-dir=$HOME/.dotfiles --work-tree=$HOME config status.showUntrackedFiles no
