@@ -13,6 +13,8 @@
 	dno = diff --name-only
 	ds = diff --stat
 	diffstat = diff --stat
+	lol = log --oneline --graph --decorate
+	lola = log --oneline --graph --decorate --all
 [color]
 	branch = auto
 	diff = auto
