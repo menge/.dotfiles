@@ -7,6 +7,9 @@ if [ -f ~/.aliases ] ; then
     source ~/.aliases
 fi
 
+#setup path
+export PATH=$HOME/bin:$PATH
+
 # Set up the prompt
 
 autoload -Uz promptinit
