@@ -26,13 +26,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
-# switch caps lock control if local session is GDM based
-if [ -n $GDMSESSION ] ; then
-    xmodmap -e 'keycode 66 = Control_L'
-    xmodmap -e 'clear Lock'
-    xmodmap -e 'add Control = Control_L'
-fi
-
 # Use modern completion system
 autoload -Uz compinit
 compinit
