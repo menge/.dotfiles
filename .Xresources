@@ -39,7 +39,7 @@ xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
 
 ! xterm ----------------------------------------------------------------------
 XTerm*foreground: LightCyan2
-XTerm*background: Grey0 
+XTerm*background: Grey7
 ! class 0: whitespace
 ! class 1: symbols
 ! class 2: alphanumeric + '~' + '/' + '.' + '-' + '_'
@@ -50,3 +50,4 @@ XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT
 XTerm*font: fixed
 XTerm*boldFont: fixed
 XTerm*scrollBar: false
+XTerm.vt100.locale: true
