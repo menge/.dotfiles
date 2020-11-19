@@ -25,6 +25,9 @@ bindkey -e
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
 
 # Use modern completion system
 autoload -Uz compinit
