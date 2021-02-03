@@ -13,8 +13,11 @@
 	dno = diff --name-only
 	ds = diff --stat
 	diffstat = diff --stat
+        fa = fetch --all
 	lol = log --oneline --graph --decorate
 	lola = log --oneline --graph --decorate --all
+	s = status
+        veryclean = clean -xdfq
 [color]
 	branch = auto
 	diff = auto
