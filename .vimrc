@@ -15,6 +15,7 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
 Plugin 'rust-lang/rust.vim'
+Plugin 'scrooloose/syntastic'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
@@ -76,3 +77,13 @@ let &titleold = "$SHELL"
 "if &term == "screen" || &term == "screen-256color"
 "    set title
 "endif
+
+" Syntastic options
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
