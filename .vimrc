@@ -14,6 +14,8 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
+Plugin 'rust-lang/rust.vim'
+
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -43,7 +45,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 colorscheme desert256
-syntax on
+syntax enable
 
 set autoindent
 set smartindent
