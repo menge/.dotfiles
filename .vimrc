@@ -91,3 +91,6 @@ let g:syntastic_check_on_wq = 0
 
 " tagbar options
 nmap <F8> :TagbarToggle<CR>
+
+" rust options
+let g:rustfmt_autosave = 1
